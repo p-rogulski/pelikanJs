@@ -1,4 +1,3 @@
-
 /*
  ____      _ _ _                   _ ____  
 |  _ \ ___| (_) | ____ _ _ __     | / ___| 
@@ -12,50 +11,79 @@ lib v1.0 by p-rogulski'2017
  PelikanJs - create a coponent based on object definition
 */
 
+var Pelikan = (function () {
 
-function CssAttributes(){
-    this.defineProperty=function (propertyName, value) {
-        this[propertyName.toUpperCase()] = value;
+    var eventManager = function () {
+        var eventQueue = [];
+
+        this.registerEvent = function (name, handler) {
+            eventQueue[name] = handler;
+        }
+
+        this.unregisterEvent = function (name) {
+            delete eventQueue[name];
+        }
+
+        this.triggerEvent = function (name, args) {
+            var fun = eventQueue[name];
+            if (args) {
+                fun.applay(null, args);
+                return;
+            }
+            fun();
+        }
     }
-}
 
-
-function ComponentStruct(id) {
-    this.id = id;
-    var attrs=new Css_attributes();
-    this.defineCssProperty=function(propertyName, value){
-        return attrs.defineProperty.call(attrs,propertyName, value);
+    var component = function (id, cssAttributesObj) {
+        this.id = id;
+        this.cssAttributesObj = cssAttributesObj;
+        this.events = new eventManager();
     }
-}
+
+    var componentBuilder = {
+       createComponent:function(componentId, css) {
+            return new component(id, css);
+        }
+    }
+
+    var componentManager = function () {
+        var components = [];
+
+        this.registerComponent = function (id, componentObj) {
+            components[id] = componentObj;
+        }
+
+        this.unregisterComponent = function (id) {
+            delete components[id];
+        }
+
+        this.getComponent(id) = function (id) {
+            return components[id];
+        }
+
+        this.getComponents = function () {
+            return components;
+        }
+    }
 
 
 
-function Component(id) {
-    this.struct=new ComponentStruct(id);
-    this.Dispatcher=function(){
-        this.eventsQueue=[];
-        
-        this.registerEvent=function(name,handler){
+
+    function Pelikan(componentId) {
+        this.addComponent = function () {
 
         }
 
-        this.unregisterEvent=function(name,handler){
+        this.removeComponent = function () {
 
         }
 
-
-    }
- 
-}
-
-function componentsStack() {
-
-    this.registerComponent = function (component) {
-    }
-
-
-    this.unregisterComponent = function (componentID) {
+        this.getComponent
 
     }
 
-}
+    return Pelikan;
+});
+var c = ComponentStruct();
+
+console.log("asdasd");
