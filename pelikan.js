@@ -84,6 +84,3 @@ var Pelikan = (function () {
 
     return Pelikan;
 });
-var c = ComponentStruct();
-
-console.log("asdasd");
