@@ -8,7 +8,7 @@
 lib v1.0 by p-rogulski'2017
 
 [description] 
- PelikanJs - create a coponent based on object definition
+ PelikanJs - create a component based on object definition
 */
 
 var Pelikan = (function () {
